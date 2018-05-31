@@ -1,12 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>frontend</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <title>frontend</title>
+</head>
+
+<body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/v-toggle/dist/v-toggle.umd.min.js"></script>
+  <div id="app">
+    <button class="btn btn-primary" v-on:click="contador++">Adicionar</button>
+    <button class="btn btn-danger" v-on:click="enviar()">Remover</button>
+    <button class="btn btn-warning" v-on:click="contador=0">Reset</button>
+    <div>O botão foi clicado {{ contador }} vezes</div>
+    <h4 v-for="usuario in usuarios">{{ usuario.nome | toUpperCase() }}</h4>
+
+    <h1 v-if="ok">Yes</h1>
+    <h1 v-else>No</h1>
+
+    <input type="checkbox" checked data-toggle="toggle"> {{ check }}
+
+    
+
+  </div>
+  <script>
+    var app = new Vue({
+      el: "#app",
+
+      data: {
+        titulo: "Aprendendo VueJS",
+        contador: 0,
+        ok: true,
+        check: true,
+        isActive: true,
+        usuarios: [
+          { nome: 'Renzo Rodrigues' },
+          { nome: 'Julianna Furtado' },
+          { nome: 'Rodolfo Vinícius' }
+        ]
+      },
+      methods: {
+        enviar() {
+          if (this.contador > 0) {
+            this.contador--;
+          }
+          else {
+            this.contador = 0;
+          }
+        }
+      },
+      filters: {
+        toUpperCase(str) {
+          return str.toUpperCase();
+        }
+      }
+    });
+  </script>
+</body>
+
 </html>
